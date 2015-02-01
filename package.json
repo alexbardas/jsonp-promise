@@ -1,0 +1,21 @@
+{
+  "name": "jsonp-promise",
+  "version": "0.1.0",
+  "description": "Jsonp es6 implementation that returns a promise.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "jsonp",
+    "promise",
+    "async",
+    "es6"
+  ],
+  "author": "Alex Bardas",
+  "license": "MIT",
+  "repository": {
+      "type": "git",
+      "url": "https://github.com/alexbardas/jsonp-promise.git"
+  }
+}
