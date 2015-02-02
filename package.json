@@ -1,11 +1,8 @@
 {
   "name": "jsonp-promise",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Jsonp es6 implementation that returns a promise.",
   "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
   "keywords": [
     "jsonp",
     "promise",

@@ -84,5 +84,5 @@ var jsonp = (url, options) => {
     };
 };
 
-export default json;
+export default jsonp;
 
