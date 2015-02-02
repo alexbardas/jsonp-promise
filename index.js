@@ -18,7 +18,7 @@ var count = 0;
  * @param {Object} options optional options
  * @return {Object} Returns a response promise and a cancel handler.
  */
-var jsonp = (url, options) => {
+var jsonp = function(url, options) {
     options = options || {};
 
     var prefix = options.prefix || '__jp';
@@ -30,12 +30,12 @@ var jsonp = (url, options) => {
     var cleanup;
     var cancel;
     var promise;
-    var noop = () => {};
+    var noop = function() {};
 
     // Generate a unique id for the request.
     var id = prefix + (count++);
 
-    cleanup = () => {
+    cleanup = function() {
         // Remove the script tag.
         if (script && script.parentNode) {
             script.parentNode.removeChild(script);
@@ -48,22 +48,15 @@ var jsonp = (url, options) => {
         }
     };
 
-    cancel = () => {
-        if (window[id]) {
-            cleanup();
-            promise = null;
-        }
-    };
-
-    promise = new Promise((resolve, reject) => {
+    promise = new Promise(function(resolve, reject) {
         if (timeout) {
-            timer = setTimeout(() => {
+            timer = setTimeout(function() {
                 cleanup();
                 reject(new Error('Timeout'));
             }, timeout);
         }
 
-        window[id] = (data) => {
+        window[id] = function(data) {
             cleanup();
             resolve(data);
         };
@@ -76,6 +69,14 @@ var jsonp = (url, options) => {
         script = document.createElement('script');
         script.src = url;
         target.parentNode.insertBefore(script, target);
+
+        cancel = function() {
+            if (window[id]) {
+                cleanup();
+                reject(new Error('Canceled'));
+            }
+        };
+
     });
 
     return {
@@ -84,5 +85,5 @@ var jsonp = (url, options) => {
     };
 };
 
-export default jsonp;
+module.exports = jsonp;
 

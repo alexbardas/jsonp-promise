@@ -1,9 +1,10 @@
 {
     "esnext": true,
     "globals": {
-        "window": true,
         "document": true,
+        "Promise": true,
         "setTimeout": true,
-        "clearTimeout": true
+        "clearTimeout": true,
+        "window": true
     }
 }
